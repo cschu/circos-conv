@@ -12,7 +12,7 @@ def writeDataTracks(fn, out=sys.stdout):
 		if row['ChrArm'][-1] not in ('A', 'B'):
 			continue
 		if row['cM'] != 'NA':
-			row_out = [row['ChrArm'][:-1], row['cM'], row['cM'], row['f_mut']]
+			row_out = ['chr%s' % row['ChrArm'], row['cM'], row['cM'], row['f_mut']]
 			out.write('\t'.join(row_out) + '\n')
 def writeBands(fn, out=sys.stdout):
 	reader = csv.reader(open(fn), delimiter=',', quotechar='"')
@@ -22,7 +22,7 @@ def writeBands(fn, out=sys.stdout):
 		if band[0][1] not in ('A', 'B'):
 			continue
 		label = '%s_%s' % (band[0][0], band[1])
-		row_out = ['band', band[0], label, label, band[1], band[1], color]
+		row_out = ['band', 'chr%s' % band[0], label, label, band[1], band[1], color]
 		if color == 'gneg':
 			color = 'gpos50'
 		else:
